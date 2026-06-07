@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snake Game - 20 Maps</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            color: white;
+            text-align: center;
+            font-family: Arial;
+        }
+
+        canvas {
+            background: black;
+            display: block;
+            margin: 20px auto;
+            border: 2px solid lime;
+        }
+
+        #menu {
+            position: absolute;
+            width: 100%;
+            top: 35%;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #hud {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="menu">
+    <h1>🐍 Snake Game (20 Maps)</h1>
+    <button onclick="startGame()">Start Game</button>
+</div>
+
+<div id="hud">
+    Score: <span id="score">0</span> | Map: <span id="map">1</span>
+</div>
+
+<canvas id="game" width="400" height="400"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+const scoreEl = document.getElementById("score");
+const mapEl = document.getElementById("map");
+
+const grid = 20;
+
+let snake, apple, score;
+let counter = 0;
+let speed = 8;
+let gameRunning = false;
+
+let mapIndex = 1;
+let walls = [];
+
+function nextMap() {
+    mapIndex++;
+    if (mapIndex > 20) mapIndex = 1;
+    mapEl.innerText = mapIndex;
+    generateMap(mapIndex);
+}
+
+// 🍎 RANDOM SAFE POSITION
+function randomPos() {
+    let pos;
+    while (true) {
+        pos = {
+            x: Math.floor(Math.random() * 20) * grid,
+            y: Math.floor(Math.random() * 20) * grid
+        };
+
+        let hit = walls.some(w => w.x === pos.x && w.y === pos.y);
+        if (!hit) return pos;
+    }
+}
+
+// 🗺️ 20 MAP DESIGNS
+function generateMap(n) {
+    walls = [];
+
+    for (let i = 0; i < 20; i++) {
+        for (let j = 0; j < 20; j++) {
+
+            // BORDER
+            if (i === 0 || j === 0 || i === 19 || j === 19) {
+                walls.push({ x: j * grid, y: i * grid });
+            }
+
+            // MAP PATTERNS
+            if (n === 1 && i === 10) walls.push({x:j*grid,y:i*grid});
+            if (n === 2 && j === 10) walls.push({x:j*grid,y:i*grid});
+
+            if (n === 3 && i % 2 === 0) walls.push({x:j*grid,y:i*grid});
+            if (n === 4 && j % 2 === 0) walls.push({x:j*grid,y:i*grid});
+
+            if (n === 5 && i === j) walls.push({x:j*grid,y:i*grid});
+            if (n === 6 && i + j === 19) walls.push({x:j*grid,y:i*grid});
+
+            if (n === 7 && i % 3 === 0) walls.push({x:j*grid,y:i*grid});
+            if (n === 8 && j % 3 === 0) walls.push({x:j*grid,y:i*grid});
+
+            if (n === 9 && i === 5 || i === 15) walls.push({x:j*grid,y:i*grid});
+            if (n === 10 && j === 5 || j === 15) walls.push({x:j*grid,y:i*grid});
+
+            if (n === 11 && (i === 5 || j === 5)) walls.push({x:j*grid,y:i*grid});
+            if (n === 12 && (i === 14 || j === 14)) walls.push({x:j*grid,y:i*grid});
+
+            if (n === 13 && i % 4 === 0) walls.push({x:j*grid,y:i*grid});
+            if (n === 14 && j % 4 === 0) walls.push({x:j*grid,y:i*grid});
+
+            if (n === 15 && (i === 8 || i === 12)) walls.push({x:j*grid,y:i*grid});
+            if (n === 16 && (j === 8 || j === 12)) walls.push({x:j*grid,y:i*grid});
+
+            if (n === 17 && (i + j) % 4 === 0) walls.push({x:j*grid,y:i*grid});
+            if (n === 18 && (i * j) % 5 === 0) walls.push({x:j*grid,y:i*grid});
+
+            if (n === 19 && i % 5 === 0 && j % 5 === 0)
+                walls.push({x:j*grid,y:i*grid});
+
+            if (n === 20 && Math.random() < 0.03)
+                walls.push({x:j*grid,y:i*grid});
+        }
+    }
+}
+
+function startGame() {
+    snake = {
+        x: 160,
+        y: 160,
+        dx: grid,
+        dy: 0,
+        cells: [],
+        maxCells: 4
+    };
+
+    score = 0;
+    scoreEl.innerText = score;
+
+    mapIndex = 1;
+    mapEl.innerText = mapIndex;
+
+    generateMap(mapIndex);
+    apple = randomPos();
+
+    counter = 0;
+    gameRunning = true;
+
+    document.getElementById("menu").style.display = "none";
+
+    requestAnimationFrame(loop);
+}
+
+function drawWalls() {
+    ctx.fillStyle = "#222";
+    walls.forEach(w => {
+        ctx.fillRect(w.x, w.y, grid, grid);
+    });
+}
+
+function loop() {
+    if (!gameRunning) return;
+
+    requestAnimationFrame(loop);
+
+    counter++;
+    if (counter < speed) return;
+    counter = 0;
+
+    snake.x += snake.dx;
+    snake.y += snake.dy;
+
+    if (
+        snake.x < 0 ||
+        snake.x >= canvas.width ||
+        snake.y < 0 ||
+        snake.y >= canvas.height
+    ) {
+        gameOver();
+        return;
+    }
+
+    snake.cells.unshift({ x: snake.x, y: snake.y });
+
+    if (snake.cells.length > snake.maxCells) {
+        snake.cells.pop();
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawWalls();
+
+    ctx.fillStyle = "red";
+    ctx.fillRect(apple.x, apple.y, grid - 1, grid - 1);
+
+    ctx.fillStyle = "lime";
+
+    snake.cells.forEach((cell, index) => {
+        ctx.fillRect(cell.x, cell.y, grid - 1, grid - 1);
+
+        // 🍎 EAT → NEXT MAP
+        if (cell.x === apple.x && cell.y === apple.y) {
+            snake.maxCells++;
+            score += 10;
+            scoreEl.innerText = score;
+
+            nextMap();
+            apple = randomPos();
+        }
+
+        // SELF COLLISION
+        for (let i = index + 1; i < snake.cells.length; i++) {
+            if (cell.x === snake.cells[i].x &&
+                cell.y === snake.cells[i].y) {
+                gameOver();
+            }
+        }
+    });
+}
+
+function gameOver() {
+    gameRunning = false;
+
+    document.getElementById("menu").style.display = "block";
+    document.getElementById("menu").innerHTML = `
+        <h1>💀 Game Over</h1>
+        <p>Score: ${score}</p>
+        <button onclick="startGame()">Restart</button>
+    `;
+}
+
+// CONTROLS
+document.addEventListener("keydown", e => {
+    if (!snake) return;
+
+    if (e.key === "ArrowLeft" && snake.dx === 0) {
+        snake.dx = -grid;
+        snake.dy = 0;
+    }
+    else if (e.key === "ArrowRight" && snake.dx === 0) {
+        snake.dx = grid;
+        snake.dy = 0;
+    }
+    else if (e.key === "ArrowUp" && snake.dy === 0) {
+        snake.dy = -grid;
+        snake.dx = 0;
+    }
+    else if (e.key === "ArrowDown" && snake.dy === 0) {
+        snake.dy = grid;
+        snake.dx = 0;
+    }
+});
+</script>
+
+</body>
+</html>
