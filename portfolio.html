@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Mark Aj V. Daud · Classic Portfolio</title>
+  <!-- Google Fonts: a timeless serif for classic feel + clean sans for details -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons, classic look) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f7f5f0;   /* warm antique paper tone */
+      font-family: 'Inter', sans-serif;
+      color: #2c2b28;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* classic container restraint */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+    }
+
+    /* ----- TYPOGRAPHY & CLASSIC ELEMENTS ----- */
+    h1, h2, h3, .logo, .nav-links a, .btn, .signature {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #1e2a2e;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      border-bottom: 1px solid #dad3c6;
+      display: inline-block;
+      padding-bottom: 0.25rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.2px;
+    }
+
+    .section-subhead {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #8b7a6b;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* classic nav */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #e3dbce;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #2c4b3e;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .logo:hover {
+      color: #8b5a2b;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #4a4a47;
+      transition: color 0.2s, border-bottom 0.2s;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover {
+      color: #8b5a2b;
+      border-bottom-color: #c7ad8d;
+    }
+
+    /* HERO section — profile card with animation */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5rem;
+      background: #fefcf8;
+      padding: 2rem 2rem 2rem 2rem;
+      border-radius: 28px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ede6db;
+    }
+
+    /* PROFILE IMAGE AREA + ANIMATION (classic subtle & elegant) */
+    .profile-frame {
+      flex: 1;
+      min-width: 220px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .profile-img-wrapper {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: #e7dfd3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    /* main profile image */
+    .profile-img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #fff6ed;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    /* ANIMATION: soft rotation & gentle scale, reminiscent of classic cameo */
+    .animated-profile {
+      animation: classicBreathing 6s infinite ease-in-out;
+      transform-origin: center;
+    }
+
+    @keyframes classicBreathing {
+      0% {
+        transform: scale(1) rotate(0deg);
+        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+      }
+      50% {
+        transform: scale(1.02) rotate(0.8deg);
+        filter: drop-shadow(0 12px 18px rgba(0,0,0,0.08));
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+      }
+    }
+
+    /* subtle ring decoration */
+    .profile-img-wrapper::after {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      border-radius: 50%;
+      border: 1px solid rgba(167, 139, 107, 0.3);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      flex: 2;
+    }
+
+    .hero-content .tagline {
+      font-size: 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: #8b7355;
+      margin: 0.5rem 0 1rem 0;
+    }
+
+    .hero-content p {
+      font-size: 1rem;
+      color: #3c3a37;
+      max-width: 500px;
+      margin-bottom: 1.5rem;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid #b7a17a;
+      padding: 0.7rem 1.6rem;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: #2c4b3e;
+      transition: 0.25s;
+      border-radius: 40px;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #2c4b3e;
+      border-color: #2c4b3e;
+      color: #fefaf5;
+    }
+
+    /* PROJECTS & WORK GRID */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .project-card {
+      background: #ffffffea;
+      border-radius: 20px;
+      padding: 1.5rem;
+      transition: all 0.25s ease;
+      border: 1px solid #ece2d6;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.02);
+      text-align: center;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: #cfc2b0;
+      box-shadow: 0 18px 28px -12px rgba(0, 0, 0, 0.08);
+    }
+
+    .project-icon {
+      font-size: 2.5rem;
+      color: #8b5a2b;
+      margin-bottom: 1rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .project-card p {
+      font-size: 0.9rem;
+      color: #5e5b56;
+      margin-bottom: 1rem;
+    }
+
+    .project-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ad8b6c;
+    }
+
+    /* about & signature */
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 4rem 0 3rem;
+      background: #fefcf8;
+      padding: 2rem;
+      border-radius: 28px;
+      border: 1px solid #ede3d6;
+    }
+
+    .about-text {
+      flex: 2;
+    }
+
+    .about-text p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .signature-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid #e3d9cd;
+      padding-left: 2rem;
+    }
+
+    .signature {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-style: italic;
+      color: #8b7355;
+      margin-bottom: 0.3rem;
+    }
+
+    .signature small {
+      font-size: 0.7rem;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 1px;
+      color: #a79783;
+    }
+
+    /* contact & footer */
+    .contact-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a, .contact-links .location-item {
+      color: #4a5b52;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+
+    .contact-links a:hover, .contact-links .location-item:hover {
+      color: #9b6e3e;
+    }
+
+    .contact-links .location-item {
+      cursor: default;
+    }
+    
+    .contact-links .location-item i {
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e2d8cd;
+      font-size: 0.8rem;
+      color: #948974;
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        padding: 1.5rem;
+      }
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .button-group {
+        justify-content: center;
+      }
+      .about-section {
+        flex-direction: column;
+      }
+      .signature-area {
+        border-left: none;
+        border-top: 1px solid #e3d9cd;
+        padding-left: 0;
+        padding-top: 1.5rem;
+      }
+      .profile-img-wrapper {
+        width: 220px;
+        height: 220px;
+      }
+      .profile-img {
+        width: 210px;
+        height: 210px;
+      }
+    }
+
+    /* vintage divider */
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: #dac29c;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .center-divider {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* quote classic */
+    .classic-quote {
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: #6a5c4c;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- navigation - classic style -->
+  <div class="navbar">
+    <a href="#" class="logo">M.A. Daud</a>
+    <div class="nav-links">
+      <a href="#work">Works</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero section: profile with animation -->
+  <div class="hero">
+    <div class="profile-frame">
+      <div class="profile-img-wrapper">
+        <img class="profile-img animated-profile" 
+             src="Images/Messenger_creation_D21CAF57-B76E-4C84-8E05-47C07D4F1830.jpeg"
+             alt="Mark Aj V. Daud profile portrait" 
+             onerror="this.src='https://randomuser.me/api/portraits/men/32.jpg'">
+      </div>
+    </div>
+    <div class="hero-content">
+      <div class="section-subhead">EST. 2025 · CLASSIC CRAFT</div>
+      <h1>Mark Aj V. Daud<br>Design & Narrative</h1>
+      <div class="tagline">“Classic aesthetics, modern precision”</div>
+      <p>With a deep reverence for traditional design principles and a love for timeless storytelling, I create digital experiences that feel both familiar and fresh.</p>
+      <div class="button-group">
+        <a href="https://www.canva.com/design/DAHJ04EbQFU/wJsQ6hK8Ujz4JCpp7Yf-7g/edit" class="btn">My works →</a>
+        <a href="snake ladder.html" class="btn" >My game 🎮</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORK section - changed to "My works" with new list -->
+  <div id="work">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+      <h2>My works</h2>
+      <span class="classic-quote">— skills & competencies</span>
+    </div>
+    <div class="divider"></div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-icon"><i class="fab fa-microsoft"></i></div>
+        <h3>Microsoft Word</h3>
+        <p>Document design, formatting, templates, and professional report creation with advanced typography.</p>
+        <span class="project-tag">Productivity</span>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="fas fa-table"></i></div>
+        <h3>Microsoft Excel</h3>
+        <p>Data analysis, pivot tables, complex formulas, macros, and financial modeling for business intelligence.</p>
+        <span class="project-tag">Data / Analytics</span>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="fas fa-chalkboard"></i></div>
+        <h3>Microsoft PowerPoint</h3>
+        <p>Engaging presentations, animated slides, pitch decks, and visual storytelling for corporate events.</p>
+        <span class="project-tag">Presentations</span>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="fas fa-code"></i></div>
+        <h3>C++</h3>
+        <p>Object-oriented programming, algorithms, data structures, and system-level software development.</p>
+        <span class="project-tag">Programming</span>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="fas fa-laptop-code"></i></div>
+        <h3>VS Code</h3>
+        <p>Efficient coding environment, extensions, debugging, version control, and web development workflows.</p>
+        <span class="project-tag">Development</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- about & signature - updated with Mark's info -->
+  <div id="about" class="about-section">
+    <div class="about-text">
+      <div class="section-subhead">Biography</div>
+      <h2 style="border-bottom: none; margin-bottom: 0.5rem;">Timeless methods,<br>future tools</h2>
+      <div class="divider" style="margin-bottom: 1rem;"></div>
+      <p>Based in Licerio, Dalaya, I am Mark Aj V. Daud, a passionate designer and developer who thrives at the intersection of classic craftsmanship and modern technology. My journey began with a fascination for structured design in Microsoft Office tools, evolving into a deep appreciation for programming with C++ and VS Code.</p>
+      <p>I believe that true mastery comes from understanding both the art and the science behind every project. Whether I'm building elegant documents in Word, analyzing data in Excel, crafting compelling narratives in PowerPoint, or writing efficient code in C++ and VS Code, I bring the same level of dedication and classic sensibility to every endeavor.</p>
+      <p>I am drawn to projects that embrace narrative depth, materiality, and graceful aging — digital experiences that feel like heirlooms, built on solid foundations of technical excellence.</p>
+    </div>
+    <div class="signature-area">
+      <div class="signature">Mark Aj</div>
+      <small>creative & technical director</small>
+      <div style="margin-top: 1.2rem; font-size: 0.8rem; text-align: center; color:#a88f6e;"><i class="fas fa-feather-alt"></i> "Simplicity is the ultimate sophistication"</div>
+    </div>
+  </div>
+
+  <!-- contact section with phone number, Gmail, and location -->
+  <div id="contact" style="margin-top: 2rem;">
+    <div style="text-align: center;">
+      <h2 style="border-bottom: none;">Let’s connect</h2>
+      <div class="divider center-divider"></div>
+      <p style="max-width: 500px; margin: 0 auto 1rem; color:#5d5449;">For commissions, classic collaborations, or just to exchange ideas.</p>
+    </div>
+    <div class="contact-links">
+      <!-- Phone number -->
+      <a href="tel:+639636734111"><i class="fas fa-phone-alt"></i> +63 963 673 4111</a>
+      <!-- Gmail address -->
+      <a href="mailto:daudmarkaj@gmail.com"><i class="far fa-envelope"></i> daudmarkaj@gmail.com</a>
+      <!-- Location -->
+      <div class="location-item">
+        <i class="fas fa-map-pin"></i> Licerio, Dalaya, Senior National Highschool
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© MMXXV Mark Aj V. Daud — classic portfolio with living animation. All works are representative.</p>
+    <p style="margin-top: 8px; font-size: 0.7rem;">Profile animation: subtle breathing & rotation — timeless elegance.</p>
+  </footer>
+</div>
+
+<!-- Game modal popup (simple and elegant) -->
+<div id="gameModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; z-index: 1000;">
+  <div style="background: #fefcf8; max-width: 400px; width: 90%; border-radius: 32px; padding: 2rem; text-align: center; border: 1px solid #e3d9cd; box-shadow: 0 25px 40px rgba(0,0,0,0.2); font-family: 'Inter', sans-serif;">
+    <i class="fas fa-gamepad" style="font-size: 3rem; color: #8b5a2b; margin-bottom: 1rem; display: inline-block;"></i>
+    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 0.5rem;">Classic Memory Game</h3>
+    <p style="color: #5e5b56; margin-bottom: 1.5rem;">Test your memory — match the classic icons!</p>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.5rem;" id="gameGrid">
+      <!-- JavaScript will populate cards -->
+    </div>
+    <div style="display: flex; gap: 1rem; justify-content: center;">
+      <button id="closeModalBtn" style="background: transparent; border: 1px solid #b7a17a; padding: 0.5rem 1.2rem; border-radius: 40px; cursor: pointer; font-family: 'Inter', sans-serif;">Close</button>
+      <button id="resetGameBtn" style="background: #2c4b3e; border: none; padding: 0.5rem 1.2rem; border-radius: 40px; color: white; cursor: pointer; font-family: 'Inter', sans-serif;">New Game</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Smooth scrolling for anchor links
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === "#") return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Profile image fallback
+    const profileImg = document.querySelector('.profile-img');
+    if(profileImg) {
+      profileImg.addEventListener('error', function() {
+        if(!this.src.includes('randomuser')) {
+          this.src = 'https://randomuser.me/api/portraits/men/32.jpg';
+        }
+      });
+    }
+
+    // GAME MODAL logic - simple memory matching game with classic icons
+    const gameButton = document.getElementById('gameButton');
+    const modal = document.getElementById('gameModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const resetBtn = document.getElementById('resetGameBtn');
+    const gameGrid = document.getElementById('gameGrid');
+    
+    let cards = [];
+    let flippedCards = [];
+    let lockBoard = false;
+    let timeout = null;
+    
+    const iconSet = [
+      'fa-book-open', 'fa-feather-alt', 'fa-pen-fancy', 
+      'fa-mug-hot', 'fa-tree', 'fa-music'
+    ];
+    
+    function initGame() {
+      // Duplicate and shuffle icons
+      let gameIcons = [...iconSet, ...iconSet];
+      for (let i = gameIcons.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [gameIcons[i], gameIcons[j]] = [gameIcons[j], gameIcons[i]];
+      }
+      cards = gameIcons.map((icon, index) => ({
+        id: index,
+        icon: icon,
+        flipped: false,
+        matched: false
+      }));
+      flippedCards = [];
+      if (timeout) clearTimeout(timeout);
+      lockBoard = false;
+      renderGame();
+    }
+    
+    function renderGame() {
+      if (!gameGrid) return;
+      gameGrid.innerHTML = '';
+      cards.forEach((card, idx) => {
+        const cardDiv = document.createElement('div');
+        cardDiv.style.background = card.matched ? '#e7dfd3' : (card.flipped ? '#fef3e4' : '#dac29c');
+        cardDiv.style.borderRadius = '12px';
+        cardDiv.style.padding = '1rem';
+        cardDiv.style.textAlign = 'center';
+        cardDiv.style.cursor = (lockBoard || card.matched) ? 'default' : 'pointer';
+        cardDiv.style.transition = 'all 0.2s';
+        cardDiv.style.border = '1px solid #cfc2b0';
+        cardDiv.style.fontSize = '1.8rem';
+        cardDiv.style.color = '#4a3b2c';
+        cardDiv.style.display = 'flex';
+        cardDiv.style.alignItems = 'center';
+        cardDiv.style.justifyContent = 'center';
+        cardDiv.style.height = '70px';
+        
+        if (card.flipped || card.matched) {
+          const icon = document.createElement('i');
+          icon.className = `fas ${card.icon}`;
+          cardDiv.appendChild(icon);
+        } else {
+          cardDiv.innerHTML = '<i class="fas fa-question" style="opacity:0.6;"></i>';
+        }
+        
+        if (!card.matched && !lockBoard) {
+          cardDiv.addEventListener('click', (function(i) {
+            return function() { handleCardClick(i); };
+          })(idx));
+        }
+        gameGrid.appendChild(cardDiv);
+      });
+    }
+    
+    function handleCardClick(index) {
+      if (lockBoard) return;
+      const card = cards[index];
+      if (card.flipped || card.matched) return;
+      
+      card.flipped = true;
+      flippedCards.push(index);
+      renderGame();
+      
+      if (flippedCards.length === 2) {
+        lockBoard = true;
+        const cardA = cards[flippedCards[0]];
+        const cardB = cards[flippedCards[1]];
+        
+        if (cardA.icon === cardB.icon) {
+          cardA.matched = true;
+          cardB.matched = true;
+          flippedCards = [];
+          lockBoard = false;
+          renderGame();
+          // Check win
+          if (cards.every(c => c.matched)) {
+            setTimeout(() => {
+              alert('✨ Perfect memory! You matched all classic icons. ✨');
+            }, 50);
+          }
+        } else {
+          timeout = setTimeout(() => {
+            cards[flippedCards[0]].flipped = false;
+            cards[flippedCards[1]].flipped = false;
+            flippedCards = [];
+            lockBoard = false;
+            renderGame();
+          }, 800);
+        }
+      }
+    }
+    
+    function showModal() {
+      initGame();
+      modal.style.display = 'flex';
+    }
+    
+    function hideModal() {
+      modal.style.display = 'none';
+      if (timeout) clearTimeout(timeout);
+    }
+    
+    if (gameButton) {
+      gameButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        showModal();
+      });
+    }
+    
+    if (closeBtn) closeBtn.addEventListener('click', hideModal);
+    if (resetBtn) resetBtn.addEventListener('click', initGame);
+    
+    // Close modal when clicking outside content
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) hideModal();
+    });
+  })();
+</script>
+</body>
+</html>
